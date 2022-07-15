@@ -1,0 +1,94 @@
+<%= form_with(model: filme, local: true) do |form| %>
+  <% if filme.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2 class="alert-heading"><em>"Houston, we have a problem"</em></h2>
+      <p class="mb-0"><%= pluralize(filme.errors.count, "inconsistência", plural: "inconsistências") %> impediu que este filme fosse adicionado:</p>      
+      <hr>
+      <p class="mb-0">Abaixo, uma lista dos campos destacados que precisam ser alterados/preenchidos</p>
+      <ul>
+        <% filme.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <form>
+    <div class="form-group">        
+      <%= form.label :capa %>        
+      <br>
+      <%= image_tag url_for(@filme.capa), class: "img-thumbnail", width: 200 if @filme.capa.attached? %>    
+      <br>
+      <%= form.file_field :capa %>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <%= form.label :titulo %>
+        <%= form.text_field :titulo, class:"form-control", placeholder:"Ex: Star Wars" %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= form.label :ano %>
+        <%= form.text_field :ano, class:"small form-control" %>
+      </div>      
+      <div class="form-group col-md-4">
+        <%= form.label :genero %>
+        <div>
+          <%= form.select("genero_id", @opcoes_genero, { include_blank: 'Selecione...' }, class:"form-control", multiple: false) %>
+          <small><%= link_to t('links.newgender'), new_genero_path, class:"nav-link bg-white", data: { toggle: 'modal', target: '#modalGenero' } %></small>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modalGenero" tabindex="-1" role="dialog" aria-labelledby="modalGeneroLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalGeneroLabel"><%= t('links.newgender') %></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body">                    
+                  <div class="form-group">
+                    <%= form.label :nome %>
+                    <%= form.text_field :nome, class:"form-control", placeholder:"Ex: Romance" %>
+                  </div>                  
+                </div>
+
+                <div class="modal-footer">       
+                  <div class="actions">
+                    <%= form.submit nil, class:"btn btn-primary text-light" %>
+                  </div>               
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= form.label :idade %>
+        <%= form.text_field :idade, class:"form-control", placeholder:"Ex: Livre, 12, 16, 18" %>
+      </div>
+      <div class="form-group col-md-6">
+        <%= form.label :elenco %>
+        <%= form.text_field :elenco, class:"form-control" %>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col">
+        <%= form.label :sinopse %>
+        <%= form.text_area :sinopse, class:"form-control", rows:3 %>
+      </div>    
+    </div>  
+    <div class="actions">
+      <%= form.submit nil, class:"btn btn-success text-light" %>
+    </div>
+  </form>
+
+
+<% end %>
+
