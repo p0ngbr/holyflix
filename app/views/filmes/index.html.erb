@@ -2,7 +2,6 @@
 
 <h1 class="display-4"><%= t('links.mymovies')%></h1>
 <%= link_to t('links.newmovie'), new_filme_path, class:"btn btn-success text-light btn-sm" %>
-<%= link_to t('links.showall'), filmes_path, class:"btn btn-primary text-light btn-sm" %>
 <%= link_to 'Imprimir Catálogo', filmes_path(format: :pdf), class:"btn btn-primary text-light btn-sm", target: :_blank  %>
 
 <br /><br />
