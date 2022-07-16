@@ -15,6 +15,7 @@ class FilmesController < ApplicationController
     respond_to do |format|    
       format.html { @filmes = Filme.order(:titulo).page params[:page] }
       format.pdf { @filmes = Filme.order(:titulo) }
+      #format.js { render 'index', layout: false }      
     end
   end
 

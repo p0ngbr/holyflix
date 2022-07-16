@@ -1,17 +1,24 @@
 <% unless @resultados.nil? %>
+  <div class="align-middle">
+    <h4>
+      Sua busca encontrou <%= pluralize(@resultados.count, 'filme', plural: 'filmes') %><br>
+      <small><%= link_to t('links.home'), filmes_path, class:"btn btn-light btn-sm" %></small>
+    </h4>  
+  </div>
   <div class="row jumbotron jumbotron-fluid justify-content-center">
     <% @resultados.each do |filme| %>
       <div class="mx-auto">
-        <div class="card" style="width: 18rem;">          
-          <%= image_tag filme.capa, class: "card-img-top" if filme.capa.attached? %>              
-          <div class="card-body">
-            <h5 class="card-title"><%= filme.titulo %></h5>
-            <p class="text-muted"><%= filme.ano %> · <%= filme.idade %> · </p>
-            <p class="card-text text-truncate" style="max-width: 20rem;"><%= filme.sinopse %></p>        
-            <%= link_to t('links.show'), filme, class:"btn btn-success text-light btn-sm" %>
+        <%= link_to filme, class:"card-link" do %>
+          <div class="card" style="width: 18rem;">          
+            <%= image_tag filme.capa, class: "card-img-top" if filme.capa.attached? %>              
+            <div class="card-body">
+              <h5 class="card-title"><%= filme.titulo %></h5>
+              <p class="text-muted"><%= filme.ano %> · <%= filme.idade %> · <%= filme.genero.nome %></p>
+              <p class="card-text text-truncate" style="max-width: 20rem;"><%= filme.sinopse %></p>                    
+            </div>
           </div>
-        </div>
-        <br>
+          <br>
+        <% end %>
       </div>
     <% end %>    
   </div> 
@@ -29,9 +36,10 @@
         <div class="modal-body">
           <p>Desculpe, mas o filme <strong><%= params[:busca] %></strong> não consta na nossa base de dados.</p>
           <p>Que tal cadastrá-lo agora?</p>        
-          <%= link_to t('links.newmovie'), new_filme_path, class:"btn btn-success text-light btn-sm" %>            
+          <%= link_to t('links.newmovie'), new_filme_path, class:"btn btn-success text-light btn-sm" %>
+          <small><%= link_to t('links.home'), filmes_path, class:"btn btn-light btn-sm" %></small>
         </div>
       </div>
     </div>  
-  </div>
+  </div>  
 <% end %>

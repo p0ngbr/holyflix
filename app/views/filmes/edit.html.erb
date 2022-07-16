@@ -1,6 +1,5 @@
-<h1>Editing Filme</h1>
+<h1><%= t('links.editmovie') %></h1>
 
 <%= render 'form', filme: @filme %>
 
-<%= link_to 'Show', @filme %> |
-<%= link_to 'Back', filmes_path %>
+<%= link_to t('links.back'), filmes_path, class:"btn btn-primary text-light btn-sm" %>

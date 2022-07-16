@@ -4,9 +4,11 @@
     show: Mostrar
     delete: Remover
     back: Voltar
+    home: Voltar para o Início
     new: Novo
     showall: Mostrar Todos os Filmes
     mymovies: Meus Filmes
+    movies: Filmes
     genders: Gêneros
     newgender: Adicionar Novo Gênero
     newmovie: Adicionar Filme

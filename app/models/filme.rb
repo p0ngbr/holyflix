@@ -1,7 +1,7 @@
 class Filme < ApplicationRecord
     has_one_attached :capa
     belongs_to :genero
-    paginates_per 40    
+    paginates_per 4    
 
     def self.buscar_filme(filme)
         if filme

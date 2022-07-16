@@ -1,3 +1,3 @@
 class Genero < ApplicationRecord
-    #belongs_to :filme
+    has_many :filme
 end
