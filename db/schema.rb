@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2022_07_15_173730) do
     t.string "idade"
     t.string "elenco"
     t.text "sinopse"
+    t.json "filme_genero"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "genero_id"

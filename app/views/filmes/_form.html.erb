@@ -33,7 +33,7 @@
       <div class="form-group col-md-4">
         <%= form.label :genero %>
         <div>
-          <%= form.select("genero_id", @opcoes_genero, { include_blank: 'Selecione...' }, class:"form-control", multiple: false) %>
+          <%= form.select("filme_genero", @opcoes_genero, { include_blank: false, include_hidden: false }, class:"form-control selectpicker", multiple: true) %>
           <small><%= link_to t('links.newgender'), new_genero_path, class:"nav-link bg-white", data: { toggle: 'modal', target: '#modalGenero' } %></small>
 
           <!-- Modal -->

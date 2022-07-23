@@ -15,12 +15,12 @@
   <div class="row jumbotron jumbotron-fluid justify-content-center">
     <% @filmes.each do |filme| %>
       <div class="mx-auto">
-        <%= link_to filme, class:"card-link", remote: true do %>
+        <%= link_to filme, class:"card-link", remote: false do %>
           <div class="card" style="width: 18rem;">          
             <%= image_tag filme.capa, class: "card-img-top" if filme.capa.attached? %>              
             <div class="card-body">
               <h5 class="card-title"><%= filme.titulo %></h5>
-              <p class="text-muted"><%= filme.ano %> · <%= filme.idade %> · <%= filme.genero.nome %></p>
+              <p class="text-muted"><%= filme.ano %> · <%= filme.idade %> · <%= filme.genero %></p>
               <p class="card-text text-truncate" style="max-width: 20rem;"><%= filme.sinopse %></p>                    
             </div>
           </div>

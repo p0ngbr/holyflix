@@ -8,6 +8,7 @@ class CreateFilmes < ActiveRecord::Migration[5.2]
       t.string :idade
       t.string :elenco
       t.text :sinopse
+      t.json :filme_genero
 
       t.timestamps
     end
