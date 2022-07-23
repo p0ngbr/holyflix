@@ -2,7 +2,7 @@ class Filme < ApplicationRecord
     has_one_attached :capa
     belongs_to :genero
     paginates_per 4    
-
+    
     def self.buscar_filme(filme)
         if filme
             filme_id = self.select(:id).where("titulo LIKE ?", "%" + sanitize_sql_like(filme) + "%")

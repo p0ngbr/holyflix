@@ -27,7 +27,7 @@
 
             <div class="form-group">    
               <strong><%= label_tag nil, @filme.class.human_attribute_name(:genero) %></strong>
-              <%= text_field_tag nil, @filme.genero.nome, class:"form-control-plaintext", disabled: true %>
+              <%= text_field_tag nil, Genero.order(:nome).find(@filme.filme_genero).pluck(:nome).join(', '), class:"form-control-plaintext", disabled: true %>
             </div>
 
             <div class="form-group">    

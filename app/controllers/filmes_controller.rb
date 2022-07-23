@@ -1,7 +1,7 @@
 class FilmesController < ApplicationController
   before_action :set_filme, only: [:show, :edit, :update, :destroy]
   before_action :set_opcoes_genero, only: [:new, :create, :edit, :update]
-
+    
   # GET /filmes or /filmes.json
   def index        
     if params[:busca]
@@ -20,7 +20,7 @@ class FilmesController < ApplicationController
   end
 
   # GET /filmes/1 or /filmes/1.json
-  def show
+  def show    
   end
 
   # GET /filmes/new
@@ -72,11 +72,11 @@ class FilmesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     def set_opcoes_genero
       @opcoes_genero = Genero.all.order(:nome).pluck(:nome, :id)
-    end
+    end    
     # Use callbacks to share common setup or constraints between actions.
     def set_filme
       @filme = Filme.find(params[:id])

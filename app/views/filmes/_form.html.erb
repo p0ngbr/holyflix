@@ -1,4 +1,6 @@
-<%= form_with(model: filme, local: true) do |form| %>
+
+<%= form_for(genero.new_record? ? genero : filme) do |f| %>
+
   <% if filme.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <h2 class="alert-heading"><em>"Houston, we have a problem"</em></h2>
@@ -15,64 +17,92 @@
 
   <form>
     <div class="form-group">        
-      <%= form.label :capa %>        
-      <br>
-      <%= image_tag url_for(@filme.capa), class: "img-thumbnail", width: 200 if @filme.capa.attached? %>    
-      <br>
-      <%= form.file_field :capa %>
+      <%= form.label :capa %>   
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Enviar capa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">URL</a>
+        </li>      
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">         
+          <br>
+          <%= image_tag url_for(@filme.capa), class: "img-thumbnail", width: 200 if @filme.capa.attached? %>    
+          <br>
+          <%= form.file_field :capa %>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Ex: http://site.com.br/imagem.jpg" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-4">
+      <div class="form-group col-7">
         <%= form.label :titulo %>
         <%= form.text_field :titulo, class:"form-control", placeholder:"Ex: Star Wars" %>
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col">
         <%= form.label :ano %>
         <%= form.text_field :ano, class:"small form-control" %>
       </div>      
-      <div class="form-group col-md-4">
-        <%= form.label :genero %>
+      <div class="form-group col">
+      
+        <%= form.label :genero %> <small>(<%= link_to t('links.new'), edit_genero_path, class:"btn-link", data: { toggle: 'modal', target: '#modalGenero' } %>)</small>
+        
         <div>
           <%= form.select("filme_genero", @opcoes_genero, { include_blank: false, include_hidden: false }, class:"form-control selectpicker", multiple: true) %>
-          <small><%= link_to t('links.newgender'), new_genero_path, class:"nav-link bg-white", data: { toggle: 'modal', target: '#modalGenero' } %></small>
+          
+                  
+            <!-- Modal -->
+            <div class="modal fade" id="modalGenero" tabindex="-1" role="dialog" aria-labelledby="modalGeneroLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
 
-          <!-- Modal -->
-          <div class="modal fade" id="modalGenero" tabindex="-1" role="dialog" aria-labelledby="modalGeneroLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalGeneroLabel"><%= t('links.newgender') %></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
 
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modalGeneroLabel"><%= t('links.newgender') %></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
+                  <div class="modal-body">                    
+                    <div class="form-group">
+                      <%= g.label :nome %>
+                      <%= g.text_field :nome, class:"form-control", placeholder:"Ex: Romance" %>
+                    </div>                  
+                  </div>
 
-                <div class="modal-body">                    
-                  <div class="form-group">
-                    <%= form.label :nome %>
-                    <%= form.text_field :nome, class:"form-control", placeholder:"Ex: Romance" %>
-                  </div>                  
-                </div>
-
-                <div class="modal-footer">       
-                  <div class="actions">
-                    <%= form.submit nil, class:"btn btn-primary text-light" %>
-                  </div>               
+                  <div class="modal-footer">       
+                    <div class="actions">
+                      <% g.submit "Dale", class:"btn btn-primary text-light" %>
+                    </div>               
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div>      
+
+
+
         </div>
       </div>
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-2">
         <%= form.label :idade %>
         <%= form.text_field :idade, class:"form-control", placeholder:"Ex: Livre, 12, 16, 18" %>
       </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col">
         <%= form.label :elenco %>
         <%= form.text_field :elenco, class:"form-control" %>
       </div>
@@ -91,4 +121,5 @@
 
 
 <% end %>
+
 

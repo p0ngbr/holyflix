@@ -8,6 +8,7 @@ class GenerosController < ApplicationController
 
   # GET /generos/1 or /generos/1.json
   def show
+    @filme = @genero.filmes.build
   end
 
   # GET /generos/new
@@ -19,31 +20,24 @@ class GenerosController < ApplicationController
   def edit
   end
 
+  def modal
+    @activity = Activity.find(params[:id])
+  end
+  
   # POST /generos or /generos.json
   def create
     @genero = Genero.new(genero_params)
 
-    if @genero.save
-      if request.xhr?
-        render json: { success: true }
+    respond_to do |format|
+      if @genero.save
+        format.html { redirect_to genero_url(@genero), notice: "Genero was successfully created." }
+        format.json { render :show, status: :created, location: @genero }
+        format.js
       else
-        redirect_to genero_url(@genero), notice: "Genero was successfully created."
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @genero.errors, status: :unprocessable_entity }
       end
-    else
-      render :new
     end
-
-    
-
-    #respond_to do |format|
-    #  if @genero.save
-    #    format.html { redirect_to genero_url(@genero), notice: "Genero was successfully created." }
-    #    format.json { render :show, status: :created, location: @genero }
-    #  else
-    #    format.html { render :new, status: :unprocessable_entity }
-    #    format.json { render json: @genero.errors, status: :unprocessable_entity }
-    #  end
-    #end
   end
 
   # PATCH/PUT /generos/1 or /generos/1.json
