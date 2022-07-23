@@ -1,5 +1,5 @@
 
-<%= form_for(genero.new_record? ? genero : filme) do |f| %>
+<%= form_with(model: filme, local: true) do |form| %>
 
   <% if filme.errors.any? %>
     <div class="alert alert-danger" role="alert">
@@ -77,14 +77,14 @@
 
                   <div class="modal-body">                    
                     <div class="form-group">
-                      <%= g.label :nome %>
-                      <%= g.text_field :nome, class:"form-control", placeholder:"Ex: Romance" %>
+                      <%= form.label :nome %>
+                      <%= form.text_field :nome, class:"form-control", placeholder:"Ex: Romance" %>
                     </div>                  
                   </div>
 
                   <div class="modal-footer">       
                     <div class="actions">
-                      <% g.submit "Dale", class:"btn btn-primary text-light" %>
+                      <% form.submit "Dale", class:"btn btn-primary text-light" %>
                     </div>               
                   </div>
                 </div>
