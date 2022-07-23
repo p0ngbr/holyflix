@@ -10,6 +10,6 @@
 - [x] Adicionar busca assíncrona com Ajax
 - [ ] Não precisar sair da tela do filme para cadastrar o Gênero
 - [x] Trocar o banco para MySQL
-- [ ] Adicionar vários gêneros para o mesmo filme
+- [x] Adicionar vários gêneros para o mesmo filme
 - [ ] Ao salvar com erro de validação os gêneros salvos deverão manter no cadastro.
 - [x] Poder trocar a capa do filme com upload de uma nova imagem.
