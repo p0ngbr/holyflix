@@ -1,4 +1,3 @@
-
 <%= form_with(model: filme, local: true) do |form| %>
 
   <% if filme.errors.any? %>
@@ -57,42 +56,10 @@
       </div>      
       <div class="form-group col">
       
-        <%= form.label :genero %> <small>(<%= link_to t('links.new'), edit_genero_path, class:"btn-link", data: { toggle: 'modal', target: '#modalGenero' } %>)</small>
-        
+        <%= form.label :genero %> <small>(<%= link_to t('links.new'), new_genero_path, class:"btn-link", data: { toggle: 'modal', target: '#modalGenero' } %>)</small>        
         <div>
-          <%= form.select("filme_genero", @opcoes_genero, { include_blank: false, include_hidden: false }, class:"form-control selectpicker", multiple: true) %>
-          
-                  
-            <!-- Modal -->
-            <div class="modal fade" id="modalGenero" tabindex="-1" role="dialog" aria-labelledby="modalGeneroLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="modalGeneroLabel"><%= t('links.newgender') %></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-
-                  <div class="modal-body">                    
-                    <div class="form-group">
-                      <%= form.label :nome %>
-                      <%= form.text_field :nome, class:"form-control", placeholder:"Ex: Romance" %>
-                    </div>                  
-                  </div>
-
-                  <div class="modal-footer">       
-                    <div class="actions">
-                      <% form.submit "Dale", class:"btn btn-primary text-light" %>
-                    </div>               
-                  </div>
-                </div>
-              </div>
-            </div>      
-
-
-
+          <%= form.select("filme_genero", @opcoes_genero, { include_blank: false, include_hidden: false }, class:"form-control selectpicker", multiple: true) %>          
+          <%= render 'novo-genero', :locals => {:genero => @genero} %>
         </div>
       </div>
     </div>

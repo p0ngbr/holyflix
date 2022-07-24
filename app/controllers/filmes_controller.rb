@@ -1,7 +1,8 @@
 class FilmesController < ApplicationController
   before_action :set_filme, only: [:show, :edit, :update, :destroy]
   before_action :set_opcoes_genero, only: [:new, :create, :edit, :update]
-    
+  skip_before_action :verify_authenticity_token
+
   # GET /filmes or /filmes.json
   def index        
     if params[:busca]

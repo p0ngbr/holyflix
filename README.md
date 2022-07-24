@@ -1,6 +1,6 @@
 # HOLYFLIX
 
-### Changelog (v2 alpha - 15/07/2022)
+### Mudanças desde a versão 1
 - Os filmes da tela inicial agora são carregados diretamente do banco de dados
 - Adicionado título do filme no carrossel
 - Adicionada paginação

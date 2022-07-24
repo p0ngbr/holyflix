@@ -22,8 +22,7 @@
               <p class="text-muted"><%= filme.ano %> · <%= filme.idade %> · <%= Genero.order(:nome).where(id: filme.filme_genero).pluck(:nome).join(', ') %></p>
               <p class="card-text text-truncate" style="max-width: 20rem;"><%= filme.sinopse %></p>                    
             </div>
-          </div>
-          <br>
+          </div>          
         <% end %>
       </div>
     <% end %>    
